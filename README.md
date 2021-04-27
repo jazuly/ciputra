@@ -87,7 +87,6 @@ INSERT INTO `docs` (`id`, `nama`, `bulan`, `value`) VALUES
   ('5', 'DIAN', 'FEBRUARY', '10000');
 
 /* QUERY */
-
 SELECT A.NAMA, IF(SUM(B.VALUE) IS NULL, 0, SUM(B.VALUE)) JANUARY, IF(SUM(C.VALUE) IS NULL, 0, SUM(C.VALUE)) FEBRUARY
 FROM ( SELECT NAMA
        FROM docs 
