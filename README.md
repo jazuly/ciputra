@@ -69,6 +69,25 @@ if ($strRawData == $strRevData) {
 
 # 4. query database
 ```
+/* TABLE */
+CREATE TABLE IF NOT EXISTS `docs` (
+  `id` int(6) unsigned NOT NULL,
+  `nama` varchar(200) NOT NULL,
+  `bulan` varchar(200) NOT NULL,
+  `value` bigint(15) NOT NULL,
+  PRIMARY KEY (`id`)
+) DEFAULT CHARSET=utf8;
+
+/* INSERT */
+INSERT INTO `docs` (`id`, `nama`, `bulan`, `value`) VALUES
+  ('1', 'ANTON', 'JANUARY', '100000'),
+  ('2', 'ANTON', 'JANUARY', '250000'),
+  ('3', 'ANTON', 'FEBRUARY', '300000'),
+  ('4', 'ANTON', 'FEBRUARY', '100000'),
+  ('5', 'DIAN', 'FEBRUARY', '10000');
+
+/* QUERY */
+
 SELECT A.NAMA, IF(SUM(B.VALUE) IS NULL, 0, SUM(B.VALUE)) JANUARY, IF(SUM(C.VALUE) IS NULL, 0, SUM(C.VALUE)) FEBRUARY
 FROM ( SELECT NAMA
        FROM docs 
