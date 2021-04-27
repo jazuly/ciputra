@@ -87,19 +87,20 @@ INSERT INTO `docs` (`id`, `nama`, `bulan`, `value`) VALUES
   ('5', 'DIAN', 'FEBRUARY', '10000');
 
 /* QUERY */
-SELECT A.NAMA, IF(SUM(B.VALUE) IS NULL, 0, SUM(B.VALUE)) JANUARY, IF(SUM(C.VALUE) IS NULL, 0, SUM(C.VALUE)) FEBRUARY
+SELECT A.NAMA, IF(B.VALUE IS NULL, 0, B.VALUE) JANUARY, IF(C.VALUE IS NULL, 0, C.VALUE) FEBRUARY
 FROM ( SELECT NAMA
        FROM docs 
      ) AS A
-LEFT JOIN (SELECT NAMA, value, bulan
+LEFT JOIN (SELECT NAMA, sum(value) value, bulan
        FROM docs 
         where bulan = 'JANUARY' 
      ) AS B
 ON A.NAMA=B.NAMA
-LEFT JOIN ( SELECT NAMA, value, bulan
+LEFT JOIN ( SELECT NAMA, sum(value) value, bulan
        FROM docs 
         where bulan = 'FEBRUARY' 
      ) AS C
 ON A.NAMA=C.NAMA
 GROUP BY A.NAMA
+ORDER BY A.NAMA DESC
 ```
